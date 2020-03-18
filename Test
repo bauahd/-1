@@ -1,0 +1,458 @@
+package sc;
+
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+ 
+
+@SuppressWarnings("serial")
+public class Test extends JFrame {
+
+    private JPanel contentPane;
+     private JTextField textField;
+     private JTextField textField_1;
+     private JTextField textField_2;
+     private JTextField textField_3;
+     private JTextField textField_4;
+     
+
+    
+     /**
+      * Launch the application.
+      */
+     public static void main(String[] args) {
+         EventQueue.invokeLater(new Runnable() {
+             public void run() {
+                 try {
+                     Test frame = new Test();
+                     frame.setVisible(true);
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+             }
+         });
+     }
+
+    /**
+      * Create the frame.
+      */
+     @SuppressWarnings({ "unchecked", "rawtypes" })
+	public Test() {
+         setTitle("西北师大疫情每日上报表");
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         setBounds(100, 100, 600, 1169);
+         contentPane = new JPanel();//新建一个JPanel容器
+        contentPane.setBorder(new EmptyBorder(5, 10,5,10)); 
+        setContentPane(contentPane);//在当前窗口中添加JPanel容器
+        
+         JLabel label = new JLabel("学生每日疫情表");
+         label.setFont(new Font("微软雅黑 Light", Font.PLAIN, 16));
+         
+         JLabel label_1 = new JLabel("学号：");
+         label_1.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         textField = new JTextField();
+         textField.setColumns(10);
+         
+         JLabel label_2 = new JLabel("姓名：");
+         label_2.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         textField_1 = new JTextField();
+         textField_1.setColumns(10);
+         
+         JLabel label_3 = new JLabel("学院： ");
+         label_3.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         textField_2 = new JTextField();
+         textField_2.setColumns(10);
+         
+         JLabel label_4 = new JLabel("专业： ");//专业     
+         label_4.setFont(new Font("等线", Font.PLAIN, 16));
+         
+        
+		JComboBox comboBox = new JComboBox();
+         comboBox.setModel(new DefaultComboBoxModel(new String[] {"请选择专业", "网络与信息安全", "软件工程", "计算机科学与技术  ", "物联"}));
+         
+         JLabel label_5 = new JLabel("班级： ");//班级      
+         label_5.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         textField_3 = new JTextField();
+         textField_3.setColumns(10);
+         
+         JLabel label_6 = new JLabel("籍贯： ");//籍贯    
+         label_6.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         JComboBox comboBox_1 = new JComboBox();
+         comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"请选择国际", "\u4E2D\u56FD", "\u4E2D\u56FD", "\u4E2D\u56FD", "CHINA", "\u8FD8\u662F\u4E2D\u56FD", "\u5FC5\u987B\u4E2D\u56FD", "\u4E2D\u534E\u4EBA\u6C11\u5171\u548C\u56FD", "\u6FB3\u5927\u5229\u4E9A", "\u65E5\u672C", "\u7F8E\u56FD", "\u4FC4\u7F57\u65AF"}));
+         
+         JComboBox comboBox_2 = new JComboBox();
+         comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"请选择省", "湖北省", "四川省", "甘肃省", "西藏自治区"}));
+         
+         JComboBox comboBox_3 = new JComboBox();
+         comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"请选择市"}));
+         
+         comboBox_2.addItemListener(new ItemListener() {
+             public void itemStateChanged(ItemEvent arg0) {//添加itemStateChanged事件
+                int index=comboBox_2.getSelectedIndex();
+                 switch(index) {
+                 case 0:
+                     comboBox_3.removeAllItems();
+                     break;
+                 case 1:
+                     comboBox_3.removeAllItems();
+                     comboBox_3.addItem("请选择市");
+                    comboBox_3.addItem("武汉市");
+                     comboBox_3.addItem("黄冈市");
+                     comboBox_3.addItem("黄石市");
+                     comboBox_3.addItem("咸宁市");
+                     comboBox_3.addItem("宜昌市");
+                     comboBox_3.addItem("襄阳市");
+                     comboBox_3.addItem("鄂州市");
+                     break;
+                 case 2:
+                     comboBox_3.removeAllItems();
+                     comboBox_3.addItem("请选择市");
+                     comboBox_3.addItem("成都市");
+                     comboBox_3.addItem("攀枝花市");
+                     comboBox_3.addItem("眉山市");
+                     comboBox_3.addItem("乐山市");
+                     break;
+                 case 3:
+                     comboBox_3.removeAllItems();
+                     comboBox_3.addItem("请选择市");
+                     comboBox_3.addItem("兰州市");
+                     comboBox_3.addItem("天水市");
+                     comboBox_3.addItem("张艳市");
+                     comboBox_3.addItem("沁阳市");
+                     break;
+                 case 4:
+                     comboBox_3.removeAllItems();
+                     comboBox_3.addItem("请选择市");
+                     comboBox_3.addItem("拉萨市");
+                     comboBox_3.addItem("日格则市");
+                     comboBox_3.addItem("林芝市");
+                     comboBox_3.addItem("山南市");
+                     break;
+                 }
+             }
+
+        });
+         
+         
+         JLabel label_71 = new JLabel("性别：");
+         label_71.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         JRadioButton radioButton1 = new JRadioButton("女");
+         JRadioButton radioButton_11 = new JRadioButton("男");
+         //使用BottonGroup类来分组然后利用add()方法，把若干个单选按钮归组
+        ButtonGroup button1=new ButtonGroup();
+         button1.add(radioButton1);
+         button1.add(radioButton_11);
+         
+         
+         JLabel lblNewLabel = new JLabel("病情：");
+         lblNewLabel.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         JCheckBox checkBox = new JCheckBox("疑似");
+         
+         JCheckBox checkBox_1 = new JCheckBox("确诊");
+         
+         JCheckBox checkBox_2 = new JCheckBox("14天内接触过湖北人");
+         
+         JCheckBox checkBox_3 = new JCheckBox("14天内没有接触过湖北人");
+         
+         JCheckBox checkBox_4 = new JCheckBox("14天内没有接触过武汉人");
+         
+         JCheckBox checkBox_5 = new JCheckBox("14天内接触过人武汉人");
+         
+         JLabel label_8 = new JLabel("备注：");
+         label_8.setFont(new Font("等线", Font.PLAIN, 16));
+         
+         textField_4 = new JTextField();
+         textField_4.setForeground(Color.BLACK);
+         textField_4.setText("（有啥想说就说）");
+         textField_4.setColumns(10);
+         
+         JButton button_1 = new JButton("提交");
+         button_1.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent arg0) {
+                 String a=textField.getText();
+                 String a1=textField_1.getText();
+                 String a2=textField_2.getText();
+                 String a3=textField_3.getText();
+                 String a4=textField_4.getText();
+                 
+                 String b=(String) comboBox.getSelectedItem();//获取被选取的选项
+                String b1=(String) comboBox_1.getSelectedItem();
+                 String b2=(String) comboBox_2.getSelectedItem();
+                 String b3=(String) comboBox_3.getSelectedItem();
+                 
+                 String c=" ";
+                 if(radioButton1.isSelected()) {
+                     c=radioButton1.getText();
+                     }else {c=radioButton_11.getText();}
+             
+                 
+                 String s=" ";
+                 if(checkBox.isSelected()) {
+                     s=checkBox.getText();
+                 }else {s=" ";}
+                 
+                 String s1=" ";
+                 if(checkBox_1.isSelected()) {
+                     s1=checkBox_1.getText();
+                 }else {s1=" ";}
+                 
+                 String s2=" ";
+                 if(checkBox_2.isSelected()) {
+                     s2=checkBox_2.getText();
+                 }else {s2=" ";}
+                 
+                 String s3=" ";
+                 if(checkBox_3.isSelected()) {
+                     s3=checkBox_3.getText();
+                 }else {s3=" ";}
+                 
+                 String s4=" ";
+                 if(checkBox_4.isSelected()) {
+                     s4=checkBox_4.getText();
+                 }else {s4=" ";}
+                 
+                 String s5=" ";
+                 if(checkBox_5.isSelected()) {
+                     s5=checkBox_5.getText();
+                 }else {s5=" ";}
+                 JOptionPane.showMessageDialog(null,"学号："+a+"\n"+"姓名："+a1+"\n"+"学院："+a2+"\n"+"专业："+b+"\n"+"班级："+a3+"\n"+"籍贯："+b1+" "+b2+" "+b3+"\n"+"性别："+c+"\n"+"病情："+s+s1+s2+s3+s4+s5+"\n"+"备注："+a4);
+             }
+             
+         });
+         button_1.setFont(new Font("等线", Font.PLAIN, 20));
+         
+         JButton button_2 = new JButton("重填");
+         button_2.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent arg0) {
+                 textField.setText("");
+                 textField_1.setText("");
+                 textField_2.setText("");
+                 textField_3.setText("");
+                 textField_4.setText("");
+                 
+                 textField_4.setForeground(Color.BLACK);
+                 textField_4.setText("（有啥想说就说）");
+                 textField_4.setColumns(10);
+                 
+                 checkBox.setSelected(false);
+                 checkBox_1.setSelected(false);
+                 checkBox_2.setSelected(false);
+                 checkBox_3.setSelected(false);
+                 checkBox_4.setSelected(false);
+                 checkBox_5.setSelected(false);
+                 
+                 comboBox.removeAllItems();
+                 comboBox_1.removeAllItems();
+                 comboBox_2.removeAllItems();
+                 comboBox_3.removeAllItems();
+                 
+                 comboBox.setModel(new DefaultComboBoxModel(new String[] {"请选择专业", "计算机科学与技术", "化学化工学院", "历史文化学院", "教育科学学院"}));
+                 
+                 comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"请填选择省/自治区", "中国", "", "中国", "CHINA", "\u8FD8\u662F\u4E2D\u56FD", "\u5FC5\u987B\u4E2D\u56FD", "\u4E2D\u534E\u4EBA\u6C11\u5171\u548C\u56FD", "\u6FB3\u5927\u5229\u4E9A", "\u65E5\u672C", "\u7F8E\u56FD", "\u4FC4\u7F57\u65AF"}));
+                 
+                 comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"请选择省/自治区", "湖北省", "四川省", "甘肃省", "西藏自治区"}));
+         
+                 comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"请选择区"}));
+                 
+                 comboBox_2.addItemListener(new ItemListener() {
+                     public void itemStateChanged(ItemEvent arg0) {//添加itemStateChanged事件
+                        int index=comboBox_2.getSelectedIndex();
+                         switch(index) {
+                         case 0:
+                             comboBox_3.removeAllItems();
+                             break;
+                         case 1:
+                             comboBox_3.removeAllItems();
+                             comboBox_3.addItem("请选择市");
+                            comboBox_3.addItem("武汉市");
+                             comboBox_3.addItem("黄冈市");
+                             comboBox_3.addItem("黄石市");
+                             comboBox_3.addItem("咸宁市");
+                             comboBox_3.addItem("宜昌市");
+                             comboBox_3.addItem("襄阳市");
+                             comboBox_3.addItem("鄂州市");
+                             break;
+                         case 2:
+                             comboBox_3.removeAllItems();
+                             comboBox_3.addItem("请选择市");;
+                             comboBox_3.addItem("成都市");
+                             comboBox_3.addItem("攀枝花市");
+                             comboBox_3.addItem("眉山市");
+                             comboBox_3.addItem("乐山市");
+                             break;
+                         case 3:
+                             comboBox_3.removeAllItems();
+                             comboBox_3.addItem("请选择市");
+                             comboBox_3.addItem("长沙市");
+                             comboBox_3.addItem("湘潭市");
+                             comboBox_3.addItem("常德市");
+                             comboBox_3.addItem("衡阳市");
+                             break;
+                         case 4:
+                             comboBox_3.removeAllItems();
+                             comboBox_3.addItem("西藏自治区");
+                             comboBox_3.addItem("拉萨市");
+                             comboBox_3.addItem("林芝市");
+                             comboBox_3.addItem("日格则市");
+                             comboBox_3.addItem("山南市");
+                             break;
+                         }
+                     }
+
+                });
+             }
+         });
+         button_2.setFont(new Font("等线", Font.PLAIN, 20));
+         
+         
+         GroupLayout gl_contentPane = new GroupLayout(contentPane);
+         gl_contentPane.setHorizontalGroup(
+             gl_contentPane.createParallelGroup(Alignment.LEADING)
+                 .addGroup(gl_contentPane.createSequentialGroup()
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                         .addGroup(gl_contentPane.createSequentialGroup()
+                             .addGap(142)
+                             .addComponent(label, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+                         .addGroup(gl_contentPane.createSequentialGroup()
+                             .addGap(74)
+                             .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                 .addGroup(gl_contentPane.createSequentialGroup()
+                                     .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                         .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                             .addComponent(label_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                             .addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                             .addComponent(label_3, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+                                         .addComponent(label_4, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                         .addComponent(label_5, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                         .addComponent(label_6, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                         .addComponent(label_71, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                         .addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                         .addComponent(label_8, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+                                     .addPreferredGap(ComponentPlacement.RELATED)
+                                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                         .addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                         .addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                         .addComponent(comboBox, 0, 141, Short.MAX_VALUE)
+                                         .addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                         .addComponent(textField_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                         .addComponent(textField)
+                                         .addComponent(comboBox_2, 0, 75, Short.MAX_VALUE)
+                                         .addComponent(comboBox_1, 0, 141, Short.MAX_VALUE)
+                                         .addComponent(comboBox_3, 0, 141, Short.MAX_VALUE)
+                                         .addGroup(gl_contentPane.createSequentialGroup()
+                                             .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                                                 .addComponent(radioButton1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                 .addComponent(checkBox_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                 .addComponent(checkBox, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                 .addComponent(checkBox_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                                             .addGap(18)
+                                             .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                     .addComponent(checkBox_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                     .addComponent(checkBox_3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                     .addComponent(checkBox_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                                                 .addComponent(radioButton_11, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))))
+                                 .addGroup(gl_contentPane.createSequentialGroup()
+                                     .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+                                     .addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                     .addComponent(button_2, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
+                             .addGap(289)))
+                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+         );
+         gl_contentPane.setVerticalGroup(
+             gl_contentPane.createParallelGroup(Alignment.LEADING)
+                 .addGroup(gl_contentPane.createSequentialGroup()
+                     .addContainerGap()
+                     .addComponent(label, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+                     .addGap(18)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                     .addPreferredGap(ComponentPlacement.RELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                         .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_3)
+                         .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                     .addGap(14)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                         .addComponent(label_4))
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                         .addComponent(label_5))
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_6)
+                         .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                     .addPreferredGap(ComponentPlacement.RELATED)
+                     .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                     .addPreferredGap(ComponentPlacement.RELATED)
+                     .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_71)
+                         .addComponent(radioButton1)
+                         .addComponent(radioButton_11))
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(lblNewLabel)
+                         .addComponent(checkBox)
+                         .addComponent(checkBox_1))
+                     .addPreferredGap(ComponentPlacement.RELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(checkBox_2)
+                         .addComponent(checkBox_3))
+                     .addPreferredGap(ComponentPlacement.RELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(checkBox_4)
+                         .addComponent(checkBox_5))
+                     .addPreferredGap(ComponentPlacement.UNRELATED)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(label_8)
+                         .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+                     .addGap(31)
+                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                         .addComponent(button_1)
+                         .addComponent(button_2))
+                     .addContainerGap(52, Short.MAX_VALUE))
+         );
+         contentPane.setLayout(gl_contentPane);
+     }
+ }
+  
+
+
+
