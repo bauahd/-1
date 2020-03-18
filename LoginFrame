@@ -1,0 +1,123 @@
+package com.homework;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+
+@SuppressWarnings("serial")
+public class LoginFrame extends JFrame{
+private static JButton bt1; 
+private static JButton bt2; 
+private static JButton bt3; 
+private static JButton bt4; 
+private static JLabel jl_1; 
+private static JFrame jf_1; //登陆窗口
+//private static JTextField jtext1; //用户名
+//private static JPasswordField jtext2; //密码
+//private static JLabel j1_admin;
+//private static JLabel j1_password;
+private static JLabel jl_2; //面板
+private static JFrame jf_2; //主窗体
+
+private static JLabel jl_3; //面板
+private static JFrame jf_3; //主窗体
+private static JLabel jl_4; //面板
+private static JFrame jf_4; //主窗体
+
+public static void main(String[] args) {
+// TODO 自动生成的方法存根
+
+jl_1=new JLabel();
+Font font = new Font("黑体",Font.PLAIN,20); //设置字体
+jf_1 = new JFrame("疫情防控情况每日上报表");
+jf_1.setSize(450,400);
+
+
+/*j1_password =new JLabel("密码");
+j1_password.setBounds(20,120,60,50);
+j1_password.setFont(font);
+jl_1.add(j1_password);
+
+j1_admin =new JLabel("用户名");
+j1_admin.setBounds(20,50,60,50);
+j1_admin.setFont(font);
+jl_1.add(j1_admin);*/
+
+bt1=new JButton("教师进入");
+bt1.setBounds(150,50,250,50);//90,250,100,50
+bt1.setFont(font);
+jl_1.add(bt1);
+
+bt2=new JButton("学生进入");
+bt2.setBounds(150,120,250,50);
+bt2.setFont(font);
+jl_1.add(bt2);
+
+bt3=new JButton("后勤进入");
+bt3.setBounds(150,200,250,50);
+bt3.setFont(font);
+jl_1.add(bt3);
+
+bt4=new JButton("取消");
+bt4.setBounds(150,280,250,50);
+bt4.setFont(font);
+jl_1.add(bt4);
+
+jf_1.add(jl_1);
+jf_1.setVisible(true);
+jf_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+jf_1.setLocation(800,400);
+
+
+ActionListener bt1_ls =new ActionListener()
+{
+
+@Override
+public void actionPerformed(ActionEvent arg0) {
+// TODO 自动生成的方法存根
+//String admin=jtext1.getText();
+//char[] password=jtext2.getPassword();
+//String str=String.valueOf(password);
+jf_2 =new JFrame("教师填写表单");
+jf_2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+jf_2.setSize(400,800);
+{
+	//JOptionPane.showMessageDialog(jf_1, "连接成功");
+jf_1.dispose();
+jf_2.setVisible(true);
+}
+}
+//else
+//JOptionPane.showMessageDialog(jf_1, "连接失败");
+
+};
+bt1.addActionListener(bt1_ls);
+ActionListener bt2_ls =new ActionListener()
+{
+
+@Override
+public void actionPerformed(ActionEvent arg0) {
+
+jf_3 =new JFrame("学生填写表单");
+jf_3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+jf_3.setSize(400,800);
+
+{
+//JOptionPane.showMessageDialog(jf_1, "连接成功");
+jf_1.dispose();	
+jf_3.setVisible(true);
+}
+}
+//else
+//JOptionPane.showMessageDialog(jf_1, "连接失败");
+
+};
+bt2.addActionListener(bt2_ls);
+}
+}
