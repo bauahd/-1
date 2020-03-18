@@ -1,0 +1,182 @@
+package sc;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+//维护表格
+public class JTableDefaultTableModelTest extends JFrame{
+
+    private DefaultTableModel tableModel;   //表格模型对象
+    private JTable table;
+    private JTextField aTextField;
+    private JTextField bTextField;
+    private JTextField cTextField;
+    private JTextField dTextField;
+    private JTextField eTextField;
+    private JTextField fTextField;
+    private JTextField gTextField;
+    private JTextField hTextField;
+    private JTextField iTextField;
+   
+    public JTableDefaultTableModelTest()
+    {
+        super();
+        setTitle("表格");
+        setBounds(100,100,1000,600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        String[] columnNames = {"学号","姓名","学院","专业","班级","籍贯","性别","病情","备注"};   //列名
+        String [][]tableVales={{"A1","B1","C1","D1","E1","F1","G1","H1","I1"},{"A2","B2","C2","D2","E2","F2","G2","H2","I2"},{"A3","B3","C3","D3","E3","F3","G3","H3","I3"},{"A4","B4","C4","D4","E4","F4","G4","H4","I4"},{"A5","B5","C5","D5","E5","F5","G5","H5","I5"}}; //数据
+        tableModel = new DefaultTableModel(tableVales,columnNames);
+        table = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(table);   //支持滚动
+        getContentPane().add(scrollPane,BorderLayout.CENTER);
+        //jdk1.6
+        //排序:
+        //table.setRowSorter(new TableRowSorter(tableModel));
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  //单选
+        table.addMouseListener(new MouseAdapter(){    //鼠标事件
+            public void mouseClicked(MouseEvent e){
+                int selectedRow = table.getSelectedRow(); //获得选中行索引
+                Object 学号 = tableModel.getValueAt(selectedRow, 0);
+                Object 姓名 = tableModel.getValueAt(selectedRow, 1);
+                Object 学院 = tableModel.getValueAt(selectedRow, 2);
+                Object 专业 = tableModel.getValueAt(selectedRow, 3);
+                Object 班级 = tableModel.getValueAt(selectedRow, 4);
+                Object 籍贯 = tableModel.getValueAt(selectedRow, 5);
+                Object 性别 = tableModel.getValueAt(selectedRow, 6);
+                Object 病情 = tableModel.getValueAt(selectedRow, 7);
+                Object 备注 = tableModel.getValueAt(selectedRow, 8);
+                aTextField.setText(学号.toString());  //给文本框赋值
+                bTextField.setText(姓名.toString());
+                cTextField.setText(学院.toString());
+                dTextField.setText(专业.toString());
+                eTextField.setText(班级.toString());
+                fTextField.setText(籍贯.toString());
+                gTextField.setText(性别.toString());
+                hTextField.setText(病情.toString());
+                iTextField.setText(备注.toString());
+            }
+        });
+        scrollPane.setViewportView(table);
+        final JPanel panel = new JPanel();
+        getContentPane().add(panel,BorderLayout.SOUTH);
+        panel.add(new JLabel("A: "));
+        aTextField = new JTextField("A4",5);
+        panel.add(aTextField);
+        panel.add(new JLabel("B: "));
+        bTextField = new JTextField("B4",5);
+        panel.add(bTextField);
+        panel.add(new JLabel("C: "));
+        cTextField = new JTextField("C4",5);
+        panel.add(cTextField);
+        panel.add(new JLabel("D: "));
+        dTextField = new JTextField("D4",5);
+        panel.add(dTextField);
+        panel.add(new JLabel("E: "));
+        eTextField = new JTextField("E4",5);
+        panel.add(eTextField);
+        panel.add(new JLabel("F: "));
+        fTextField = new JTextField("F4",5);
+        panel.add(fTextField);
+        panel.add(new JLabel("G: "));
+        gTextField = new JTextField("G4",5);
+        panel.add(gTextField);
+        panel.add(new JLabel("H: "));
+        hTextField = new JTextField("H4",5);
+        panel.add(hTextField);
+        panel.add(new JLabel("I: "));
+        iTextField = new JTextField("I4",5);
+        panel.add(iTextField);
+        final JButton addButton = new JButton("添加");   //添加按钮
+        addButton.addActionListener(new ActionListener(){//添加事件
+            public void actionPerformed(ActionEvent e){
+            	String []rowValues = {aTextField.getText(),aTextField.getText()};
+                tableModel.addRow(rowValues);  //添加一行
+                String []rowValues1 = {aTextField.getText(),bTextField.getText()};
+                tableModel.addRow(rowValues1);  //添加一行
+                String []rowValues11 = {aTextField.getText(),cTextField.getText()};
+                tableModel.addRow(rowValues11);  //添加一行
+                String []rowValues111 = {cTextField.getText(),dTextField.getText()};
+                tableModel.addRow(rowValues111);  //添加一行
+                String []rowValues1111 = {dTextField.getText(),eTextField.getText()};
+                tableModel.addRow(rowValues1111);  //添加一行
+                String []rowValues11111 = {eTextField.getText(),fTextField.getText()};
+                tableModel.addRow(rowValues11111);  //添加一行
+                @SuppressWarnings("unused")
+				String []rowValues21 = {fTextField.getText(),gTextField.getText()};
+                tableModel.addRow(rowValues11111);  //添加一行
+                @SuppressWarnings("unused")
+				String []rowValues22 = {gTextField.getText(),hTextField.getText()};
+                tableModel.addRow(rowValues11111);  //添加一行
+                @SuppressWarnings("unused")
+				String []rowValues23 = {hTextField.getText(),iTextField.getText()};
+                tableModel.addRow(rowValues11111);  //添加一行
+                int rowCount = table.getRowCount() +1;   //行数加上1
+                aTextField.setText("A"+rowCount);
+                bTextField.setText("B"+rowCount);
+                aTextField.setText("C"+rowCount);
+                dTextField.setText("D"+rowCount);
+                eTextField.setText("E"+rowCount);
+                fTextField.setText("F"+rowCount);
+                gTextField.setText("G"+rowCount);
+                hTextField.setText("H"+rowCount);
+                iTextField.setText("I"+rowCount);
+             
+            }
+        });
+        panel.add(addButton);  
+
+        final JButton updateButton = new JButton("修改");   //修改按钮
+        updateButton.addActionListener(new ActionListener(){//添加事件
+            public void actionPerformed(ActionEvent e){
+                int selectedRow = table.getSelectedRow();//获得选中行的索引
+                if(selectedRow!= -1)   //是否存在选中行
+                {
+                    //修改指定的值：
+                    tableModel.setValueAt(aTextField.getText(), selectedRow, 0);
+                    tableModel.setValueAt(bTextField.getText(), selectedRow, 1);
+                    tableModel.setValueAt(cTextField.getText(), selectedRow, 2);
+                    tableModel.setValueAt(dTextField.getText(), selectedRow, 3);
+                    tableModel.setValueAt(eTextField.getText(), selectedRow, 4);
+                    tableModel.setValueAt(fTextField.getText(), selectedRow, 5);
+                    tableModel.setValueAt(gTextField.getText(), selectedRow, 6);
+                    tableModel.setValueAt(hTextField.getText(), selectedRow, 7);
+                    tableModel.setValueAt(iTextField.getText(), selectedRow, 8);
+                    //table.setValueAt(arg0, arg1, arg2)
+                }
+            }
+        });
+        panel.add(updateButton);
+
+        final JButton delButton = new JButton("删除");
+        delButton.addActionListener(new ActionListener(){//添加事件
+            public void actionPerformed(ActionEvent e){
+                int selectedRow = table.getSelectedRow();//获得选中行的索引
+                if(selectedRow!=-1)  //存在选中行
+                {
+                    tableModel.removeRow(selectedRow);  //删除行
+                }
+            }
+        });
+        panel.add(delButton);
+    }
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        JTableDefaultTableModelTest jTableDefaultTableModelTest = new JTableDefaultTableModelTest();
+        jTableDefaultTableModelTest.setVisible(true);
+    }
+
+}
