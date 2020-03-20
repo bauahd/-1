@@ -1,0 +1,80 @@
+package org.demo;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+public class ExcelExporter {
+	
+	public ExcelExporter(){}
+	
+	public void exportTable(JTable table,File file) throws IOException{
+		
+		TableModel model = table.getModel();
+        FileWriter out = new FileWriter(file);
+        
+        for(int i=0; i < model.getColumnCount(); i++) {
+            out.write(model.getColumnName(i) + "/t");
+        }
+        out.write("/n");
+        for(int i=0; i< model.getRowCount(); i++) {
+            for(int j=0; j < model.getColumnCount(); j++) {
+                out.write(model.getValueAt(i,j).toString()+"/t");
+            }
+            out.write("/n");
+        }
+        out.close();
+        System.out.println("write out to: " + file);
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		//信息
+		String[][] arg={{"学号","201771010101"},{"姓名","白玛次仁"},{"学院","计算机学院"},{"专业","网络与信息安全"},{"班级","17级网络班"},{"性别","女"},{"病情","否"},{"备注","...."},};
+		List<Object> list=new ArrayList<Object>();
+	
+		//標題
+		String[] header={"填写内容", "填表"};
+		
+		JFrame JF=new JFrame("JFrame to excel Hack");
+		
+		DefaultTableModel model=new DefaultTableModel(arg,header);
+		
+		final JTable table=new JTable(model);
+		
+		JScrollPane JS=new JScrollPane(table);
+		
+		JButton JB=new JButton("EXPORT");
+		
+		JB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    ExcelExporter exp = new ExcelExporter();
+                    exp.exportTable(table, new File("results.xls"));
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+		JF.getContentPane().add("Center",JS);
+		JF.getContentPane().add("South",JB);
+		JF.pack();
+		JF.setVisible(true);
+		
+	}
+
+}
